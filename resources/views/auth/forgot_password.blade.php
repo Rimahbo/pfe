@@ -9,7 +9,7 @@
                     <h3 class="text-center text-dark mb-4">Forgot Password</h3>
                     <p class="text-center text-muted mb-4">Enter your email to receive a password reset link.</p>
 
-                    <form action="{{ route('app_forgot_password') }}" method="POST">
+                    <form action="{{ route('password.email') }}" method="POST">
                         @csrf
                         @include('alerte.alerte-message')
 
@@ -21,7 +21,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter your email">
+                            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter your email">
                         </div>
 
                         <div class="d-grid gap-2 mb-3">

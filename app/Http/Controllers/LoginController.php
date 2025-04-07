@@ -154,6 +154,25 @@ class LoginController extends Controller
         }
     }
     public function forgotPassword(){
+        if($this->request->isMethod('post')){
+            $email = $thos->request->input('email-send');
+            $user = DB::table('users')->where('email',$email)->first();
+            if($user){
+                return redirect()->route('login')->with('danger','This token does not match any user!');
+
+
+
+
+            }else{
+                return back()->withErrors(['email-error'=>'the email you entered dos not exist!'])->with('old_email',$email);
+            }
+
+
+            return redirect()->route('login')->with('success','your email address has been verified!');
+
+
+        }
+
         return view('auth.forgot_password');
     }
 }
